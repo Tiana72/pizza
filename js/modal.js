@@ -1,6 +1,10 @@
 import { scrollController } from "./scroll.js";
 
-export const modalController = ({ modal, btnOpen, btnClose, time = 300 }) => {
+export const modalController = ({ modal, btnOpen, btnClose, time = 300, 
+	cbOpen = () => {
+
+	} 
+}) => {
 	const buttonElems = document.querySelectorAll(btnOpen);
 	const modalElem = document.querySelector(modal);
 
@@ -30,7 +34,8 @@ export const modalController = ({ modal, btnOpen, btnClose, time = 300 }) => {
 		}
 	};
 
-	const openModal = () => {
+	const openModal = (e) => {
+		cbOpen(e.target);
 		modalElem.style.visibility = "visible";
 		modalElem.style.opacity = 1;
 		window.addEventListener("keydown", closeModal);

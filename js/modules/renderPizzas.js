@@ -1,5 +1,6 @@
 import { modalController } from "../modal.js";
 import { getData } from "./getData.js";
+import { renderModalPizza } from "./renderModalPizza.js";
 
 const btnPizzaReset = document.createElement('button');
 btnPizzaReset.classList.add('toppings__label');
@@ -56,6 +57,12 @@ export const renderPizzas = async (toppings) => {
             modal: '.modal-pizza',
             btnOpen: '.card__btn', 
             btnClose: '.modal__close',
+            async cbOpen(btnOpen) {
+                const pizza = await getData(`https://scratch-sunny-lilac.glitch.me/api/products/${btnOpen.dataset.id}`);
+                console.log(pizza);
+                renderModalPizza(pizza);
+
+            }
         })       
     } else {
         pizzaTitle.textContent = 'Такой пиццы у нас нет :(';
