@@ -1,5 +1,6 @@
 import { getData } from "./getData.js";
 import { renderPizzas } from "./renderPizzas.js";
+import { changeFirstUpperCase } from "./helpers.js";
 
 export const renderToppings = async () => {
     const { en: enToppings, ru: ruToppings } = await getData('https://scratch-sunny-lilac.glitch.me/api/toppings');
@@ -10,7 +11,7 @@ export const renderToppings = async () => {
         item.classList.add('toppings__item');
         item.innerHTML = `
             <input id="${enName}" class="toppings__checkbox" type="checkbox" name="topping" value="${enName}">
-            <label for="${enName}" class="toppings__label">${ruToppings[index][0].toUpperCase()}${ruToppings[index].slice(1).toLowerCase()}</label>
+            <label for="${enName}" class="toppings__label">${changeFirstUpperCase(ruToppings[index])}</label>
         `
         return item;
     })
