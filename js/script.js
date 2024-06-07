@@ -15,6 +15,14 @@ const init = () => {
         cbOpen() {
             renderCart();
         }
+    }),
+    modalController({
+        modal: '.modal-cart',
+        btnOpen: '.hero__order',
+        btnClose: '.modal__close',
+        cbOpen() {
+            renderCart();
+        }
     })
 }
 
